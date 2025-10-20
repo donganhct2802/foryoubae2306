@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Women's Day 20/10 — Gửi đến Hạ</title>
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
+  <style>
+    :root{
+      --bg1: 255, 192, 203; --bg2: 255, 105, 180; --bg3: 255, 182, 193;
+      --glass: 255,255,255; --ink: 18,18,23; --accent: 255, 105, 180;
+      --radius: 22px; --pad: clamp(16px, 2.2vmax, 28px); --w: min(980px, 92vw);
+    }
+    *,*::before,*::after{ box-sizing: border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font: 500 16px/1.6 "SF Pro Display", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: rgb(255,255,255); overflow-x: hidden;
+      background: url('https://i.pinimg.com/736x/5c/4b/5c/5c4b5cc490bb0097867fefc7a937b112.jpg') no-repeat center center fixed;
+      background-size: cover; position: relative;
+    }
+    body::before { content: ''; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px); z-index: -3; }
+    .bg-anim{ position: fixed; inset:-10vmax; z-index:-2; background: radial-gradient(40vmax 28vmax at var(--x,50%) var(--y,50%), rgba(var(--bg2), .20), transparent 60%), radial-gradient(48vmax 36vmax at calc(100% - var(--x,50%)) calc(100% - var(--y,50%)), rgba(var(--bg1), .18), transparent 62%), radial-gradient(36vmax 28vmax at 50% 110%, rgba(var(--bg3), .16), transparent 60%); filter: saturate(1.5) opacity(0.8); animation: pulse 9s ease-in-out infinite; will-change: transform, background-position; }
+    @keyframes pulse{ 0%,100%{ transform: scale(1) } 50%{ transform: scale(1.03) } }
+    .sky-dots{ position: fixed; inset:0; pointer-events:none; z-index:-1; }
+    .sky-dots .dot{ position:absolute; width:4px; height:4px; border-radius:50%; background: rgba(255,255,255,.6); filter: blur(0.2px); animation: float linear infinite; opacity:.8; }
+    @keyframes float{ from{ transform: translate3d(var(--sx), 110vh, 0) scale(var(--sc)) } to  { transform: translate3d(var(--ex), -10vh, 0)  scale(var(--sc)) } }
+    #sky{ position: fixed; inset:0; pointer-events:none; z-index:-1; }
+    .wrap{ width:var(--w); margin:0 auto; padding: 10vh 0 16vh; }
+    section{ margin: clamp(28px, 6vmax, 120px) 0; }
+    .glass{ position: relative; background: rgba(var(--glass), .15); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius); box-shadow: 0 12px 40px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.15); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); padding: var(--pad); overflow: hidden; transform-style: preserve-3d; transition: filter .5s ease, transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s; }
+    .glass::before{ content:""; position:absolute; inset:-40% -40% auto -40%; height: 70%; background: radial-gradient(40% 55% at 50% 40%, rgba(255,255,255,.35), transparent 60%); transform: translateZ(0); mix-blend-mode: screen; pointer-events:none; animation: liquid 18s ease-in-out infinite; }
+    @keyframes liquid{ 0%,100%{ transform: translate(0,0) rotate(0deg) } 50%{ transform: translate(6%, -4%) rotate(8deg) } }
+    .glass:hover{ transform: translateY(-4px) }
+    .float-on-click{ cursor: pointer; }
+    .float-on-click:active{ transform: translateY(-2px) scale(.99) }
+    .float-out{ transform: translate3d(0,-18px,0) scale(1.03) !important; box-shadow: 0 18px 60px rgba(0,0,0,.35) }
+    .badge{ display:inline-flex; gap:.5rem; align-items:center; font-size:.88rem; letter-spacing:.12em; text-transform: uppercase; color:#fff; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: .5rem .9rem; backdrop-filter: blur(8px); }
+    h1{ font-size: clamp(32px, 6.5vmax, 72px); line-height:1.05; margin: .6rem 0 0; color:#fff; letter-spacing:.02em; text-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    h2{ margin:0 0 .2rem 0; color:#fff; font-size:clamp(22px,3.6vmax,34px); }
+    .sub{ font-size: clamp(14px, 2.2vmax, 18px); color: rgba(255,255,255,.88); margin-top: .6rem; }
+    .for{ font-weight:700; font-size: clamp(18px, 3vmax, 22px); color: rgb(255,255,255); letter-spacing:.04em; }
+    p{ margin: .6rem 0 0; color: rgba(255,255,255,.95) }
+    .accent{ color: rgb(var(--accent)) }
+    .grid{ display:grid; gap: clamp(16px, 2.6vmax, 26px); grid-template-columns: repeat(12, 1fr); }
+    .col-12{ grid-column: span 12 }
+    .col-6{ grid-column: span 6 }
+    @media (max-width: 860px){ .col-6 { grid-column: span 12 } }
+    .reveal{ opacity:0; transform: translateY(16px); transition: all .9s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
+    .reveal.show{ opacity:1; transform: translateY(0) }
+    footer{ text-align:center; color: rgba(255,255,255,.7); padding: 64px 16px 24px }
+    a.btn-minimal{ display: none; }
+    .password-protected-container {
+      position: relative;
+      /* **THAY ĐỔI Ở ĐÂY: Thêm margin top** */
+      margin-top: clamp(40px, 8vw, 80px); /* Adjust this value as needed */
+    }
+    #spotify-details { filter: blur(8px); user-select: none; pointer-events: none; transition: filter 0.5s ease-out; }
+    .password-protected-container.unlocked #spotify-details { filter: blur(0px); user-select: auto; pointer-events: auto; }
+    .password-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; opacity: 1; transition: opacity 0.5s ease-out, visibility 0.5s ease-out; visibility: visible; padding: clamp(20px, 4vw, 40px); text-align: center; color: #fff; }
+    .password-protected-container.unlocked .password-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
+    .password-prompt { margin-bottom: 15px; font-size: 1.1em; opacity: 0.8; font-family: "SF Pro Display", sans-serif; }
+    .password-display { font-size: 2em; letter-spacing: 0.5em; margin-bottom: 20px; min-height: 1.5em; background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); font-family: "SF Pro Display", sans-serif; }
+    .password-display.error { color: #ff8a8a; border-color: #ff8a8a; }
+    .numpad { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: clamp(10px, 2vw, 15px); row-gap: clamp(15px, 2.5vw, 20px); width: clamp(200px, 80%, 280px); margin: 15px auto 0; }
+    .numpad-btn { font-size: clamp(1.5em, 4vw, 1.8em); font-weight: 500; color: #fff; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 50%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); transition: background-color 0.2s ease, transform 0.1s ease; user-select: none; font-family: "SF Pro Display", sans-serif; }
+    .numpad-btn:hover { background-color: rgba(255, 255, 255, 0.25); }
+    .numpad-btn:active { background-color: rgba(255, 255, 255, 0.35); transform: scale(0.95); }
+    .numpad-btn.zero { grid-column: 2 / 3; }
+    .numpad-btn.placeholder { visibility: hidden; pointer-events: none; }
+    .numpad-btn.delete { font-size: clamp(1.3em, 3.5vw, 1.5em); background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+    .numpad-btn.delete:hover { background-color: rgba(255, 255, 255, 0.2); }
+    .numpad-btn.delete:active { background-color: rgba(255, 255, 255, 0.3); }
+    #spotify-logo { width: 50px; height: 50px; margin-bottom: 10px; vertical-align: middle; }
+    #spotify-details p { margin: 0.4rem 0 0; }
+    #spotify-details .note { font-size: 0.9em; opacity: 0.8; margin-top: 1rem; }
+    .heart-grid-container { display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: repeat(6, 1fr); width: clamp(280px, 90vw, 600px); aspect-ratio: 9 / 6; margin: 0 auto; gap: 4px; }
+    .heart-item { width: 100%; height: 100%; aspect-ratio: 1 / 1; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); overflow: hidden; animation: heartBump 2s infinite ease-in-out; animation-delay: calc(var(--i) * 0.05s); transition: transform 0.3s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.5); }
+    .heart-item img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .heart-item:hover { transform: scale(1.15) !important; z-index: 10; animation-play-state: paused; }
+    @keyframes heartBump { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+    .heart-item:nth-child(1) { grid-area: 1 / 3; } .heart-item:nth-child(2) { grid-area: 1 / 4; } .heart-item:nth-child(3) { grid-area: 1 / 6; } .heart-item:nth-child(4) { grid-area: 1 / 7; } .heart-item:nth-child(5) { grid-area: 2 / 2; } .heart-item:nth-child(6) { grid-area: 2 / 3; } .heart-item:nth-child(7) { grid-area: 2 / 4; } .heart-item:nth-child(8) { grid-area: 2 / 5; } .heart-item:nth-child(9) { grid-area: 2 / 6; } .heart-item:nth-child(10) { grid-area: 2 / 7; } .heart-item:nth-child(11) { grid-area: 2 / 8; } .heart-item:nth-child(12) { grid-area: 3 / 2; } .heart-item:nth-child(13) { grid-area: 3 / 3; } .heart-item:nth-child(14) { grid-area: 3 / 4; } .heart-item:nth-child(15) { grid-area: 3 / 5; } .heart-item:nth-child(16) { grid-area: 3 / 6; } .heart-item:nth-child(17) { grid-area: 3 / 7; } .heart-item:nth-child(18) { grid-area: 3 / 8; } .heart-item:nth-child(19) { grid-area: 4 / 2; } .heart-item:nth-child(20) { grid-area: 4 / 3; } .heart-item:nth-child(21) { grid-area: 4 / 4; } .heart-item:nth-child(22) { grid-area: 4 / 5; } .heart-item:nth-child(23) { grid-area: 4 / 6; } .heart-item:nth-child(24) { grid-area: 4 / 7; } .heart-item:nth-child(25) { grid-area: 4 / 8; } .heart-item:nth-child(26) { grid-area: 5 / 3; } .heart-item:nth-child(27) { grid-area: 5 / 4; } .heart-item:nth-child(28) { grid-area: 5 / 5; } .heart-item:nth-child(29) { grid-area: 5 / 6; } .heart-item:nth-child(30) { grid-area: 5 / 7; } .heart-item:nth-child(31) { grid-area: 6 / 5; }
+    .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease-in-out; animation: fadeInLightbox 0.3s forwards; }
+    .lightbox.show { display: flex; opacity: 1; }
+    .lightbox-content { margin: auto; display: block; max-width: 90%; max-height: 90vh; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); border: 4px solid white; transform: scale(0.9); animation: scaleUpImage 0.3s forwards; }
+    @keyframes fadeInLightbox { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scaleUpImage { from { transform: scale(0.9); } to { transform: scale(1); } }
+    .close-btn { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+    .close-btn:hover, .close-btn:focus { color: #bbb; text-decoration: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="bg-anim" aria-hidden="true"></div>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="sky-dots" aria-hidden="true"></div>
+
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <main class="wrap">
+    <section class="grid">
+      <div class="col-12">
+        <span class="badge float-on-click">women's day · 20/10</span>
+        <h1 class="reveal" style="--d:0s">Happy <span class="accent">Women's Day</span> 20/10</h1>
+        <div class="sub reveal" style="--d:0.1s">@Foryoulittlebaby</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="col-6 reveal" style="--d:0.2s">
+        <div class="glass float-on-click">
+          <div class="for">Gửi</div>
+          <p style="margin-top:.4rem;color:rgba(255,255,255,.8)">Cô bé tuổi 18 đáng iu</p>
+        </div>
+      </div>
+
+      <div class="col-6 reveal" style="--d:0.3s">
+        <div class="glass float-on-click" style="min-height:220px">
+          <p style="margin:0;color:rgba(255,255,255,.92)">Hạ à,</p>
+          <p style="margin-top:.6rem;color:rgba(255,255,255,.92)">Dù không còn chung lối như trước, vẫn có vài điều anh chưa từng quên nói. Anh không biết gọi tên thứ cảm xúc này là gì — giữa lưng chừng thương nhớ và hoài niệm, nó vẫn sáng như ánh đèn cuối phố, khi kí ức anh vô tình lướt qua từng nơi quen thuộc.</p>
+          <p style="margin-top:.6rem;color:rgba(255,255,255,.92)">20/10 này, anh muốn gửi một lời chúc, không để níu, cũng không để nhớ, mà chỉ để nói với vũ trụ rằng: “Có một cô gái tên Hạ - và cô ấy xứng đáng với mọi điều dịu dàng nhất trên đời.”</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="col-12 reveal" style="--d:0.4s">
+        <div class="glass float-on-click" id="wish">
+          <h2>For you</h2>
+          <p style="color:rgba(255,255,255,.75); margin-top:0">Bé bỏng của anh</p>
+          <article style="margin-top:.6rem; font-size:1.05rem">
+            <p>Chúc Hạ một ngày 20/10 thật an yên.</p>
+            <p>Anh mong em vẫn giữ được nụ cười ấy, thứ từng khiến anh rung động vào những buổi hẹn đầu. Anh mong rằng cuộc sống sẽ dịu dàng với em như ngày đầu anh gặp.</p>
+            <p>Mong em luôn có những buổi sáng đủ nắng để thấy lòng nhẹ, những tối đủ yên để ngủ sớm, và những người đủ tốt để em không phải cố gắng một mình.</p>
+            <p>20/10 này, anh không có hoa, cũng chẳng có quà, chỉ gửi lại chút kỷ niệm - như lời chào nhỏ giữa hai người từng thương.</p>
+            <p style="margin-top:1rem">Chúc em hạnh phúc, dù ở đâu, vẫn là Hạ mà anh từng yêu quý.</p>
+            <p style="margin-top:1rem">— <em>From người yêu cũ</em></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="--d:0.5s; margin-top: 50px;">
+      <h2 style="text-align:center; color:#fff; margin-bottom: 30px;">Những kỷ niệm của chúng ta ❤️</h2>
+      <div class="heart-grid-container">
+        <div class="heart-item" style="--i:1;" data-img-src="anh1.jpg"><img src="anh1.jpg" alt="Kỷ niệm 1"></div>
+        <div class="heart-item" style="--i:2;" data-img-src="anh2.jpg"><img src="anh2.jpg" alt="Kỷ niệm 2"></div>
+        <div class="heart-item" style="--i:3;" data-img-src="anh3.jpg"><img src="anh3.jpg" alt="Kỷ niệm 3"></div>
+        <div class="heart-item" style="--i:4;" data-img-src="anh4.jpg"><img src="anh4.jpg" alt="Kỷ niệm 4"></div>
+        <div class="heart-item" style="--i:5;" data-img-src="anh5.jpg"><img src="anh5.jpg" alt="Kỷ niệm 5"></div>
+        <div class="heart-item" style="--i:6;" data-img-src="anh6.jpg"><img src="anh6.jpg" alt="Kỷ niệm 6"></div>
+        <div class="heart-item" style="--i:7;" data-img-src="anh7.jpg"><img src="anh7.jpg" alt="Kỷ niệm 7"></div>
+        <div class="heart-item" style="--i:8;" data-img-src="anh8.jpg"><img src="anh8.jpg" alt="Kỷ niệm 8"></div>
+        <div class="heart-item" style="--i:9;" data-img-src="anh9.jpg"><img src="anh9.jpg" alt="Kỷ niệm 9"></div>
+        <div class="heart-item" style="--i:10;" data-img-src="anh10.jpg"><img src="anh10.jpg" alt="Kỷ niệm 10"></div>
+        <div class="heart-item" style="--i:11;" data-img-src="anh11.jpg"><img src="anh11.jpg" alt="Kỷ niệm 11"></div>
+        <div class="heart-item" style="--i:12;" data-img-src="anh12.jpg"><img src="anh12.jpg" alt="Kỷ niệm 12"></div>
+        <div class="heart-item" style="--i:13;" data-img-src="anh13.jpg"><img src="anh13.jpg" alt="Kỷ niệm 13"></div>
+        <div class="heart-item" style="--i:14;" data-img-src="anh14.jpg"><img src="anh14.jpg" alt="Kỷ niệm 14"></div>
+        <div class="heart-item" style="--i:15;" data-img-src="anh15.jpg"><img src="anh15.jpg" alt="Kỷ niệm 15"></div>
+        <div class="heart-item" style="--i:16;" data-img-src="anh16.jpg"><img src="anh16.jpg" alt="Kỷ niệm 16"></div>
+        <div class="heart-item" style="--i:17;" data-img-src="anh17.jpg"><img src="anh17.jpg" alt="Kỷ niệm 17"></div>
+        <div class="heart-item" style="--i:18;" data-img-src="anh18.jpg"><img src="anh18.jpg" alt="Kỷ niệm 18"></div>
+        <div class="heart-item" style="--i:19;" data-img-src="anh19.jpg"><img src="anh19.jpg" alt="Kỷ niệm 19"></div>
+        <div class="heart-item" style="--i:20;" data-img-src="anh20.jpg"><img src="anh20.jpg" alt="Kỷ niệm 20"></div>
+        <div class="heart-item" style="--i:21;" data-img-src="anh21.jpg"><img src="anh21.jpg" alt="Kỷ niệm 21"></div>
+        <div class="heart-item" style="--i:22;" data-img-src="anh22.jpg"><img src="anh22.jpg" alt="Kỷ niệm 22"></div>
+        <div class="heart-item" style="--i:23;" data-img-src="anh23.jpg"><img src="anh23.jpg" alt="Kỷ niệm 23"></div>
+        <div class="heart-item" style="--i:24;" data-img-src="anh24.jpg"><img src="anh24.jpg" alt="Kỷ niệm 24"></div>
+        <div class="heart-item" style="--i:25;" data-img-src="anh25.jpg"><img src="anh25.jpg" alt="Kỷ niệm 25"></div>
+        <div class="heart-item" style="--i:26;" data-img-src="anh26.jpg"><img src="anh26.jpg" alt="Kỷ niệm 26"></div>
+        <div class="heart-item" style="--i:27;" data-img-src="anh27.jpg"><img src="anh27.jpg" alt="Kỷ niệm 27"></div>
+        <div class="heart-item" style="--i:28;" data-img-src="anh28.jpg"><img src="anh28.jpg" alt="Kỷ niệm 28"></div>
+        <div class="heart-item" style="--i:29;" data-img-src="anh29.jpg"><img src="anh29.jpg" alt="Kỷ niệm 29"></div>
+        <div class="heart-item" style="--i:30;" data-img-src="anh30.jpg"><img src="anh30.jpg" alt="Kỷ niệm 30"></div>
+        <div class="heart-item" style="--i:31;" data-img-src="anh31.jpg"><img src="anh31.jpg" alt="Kỷ niệm 31"></div>
+      </div>
+    </section>
+
+    <section class="grid">
+        <div class="col-12 reveal" style="--d:0.6s">
+          <div class="password-protected-container" id="spotify-container">
+            <div class="glass" id="spotify-details">
+              <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                <img id="spotify-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Spotify Logo">
+                <h2>Spotify Premium</h2>
+              </div>
+              <p>🎁 Món quà nhỏ cho em nghe nhạc nè:</p>
+              <p><strong>Tài khoản:</strong> foryoubae2306@gmail.com</p>
+              <p><strong>Mật khẩu:</strong> quynhquynh2306</p>
+              <p class="note"><em>Lưu ý: Đăng nhập bằng gmail nha!</em></p>
+            </div>
+            <div class="password-overlay">
+              <div class="password-prompt">Nhập mật mã để nhận quà 🎁</div>
+              <div class="password-display"></div>
+              <div class="numpad">
+                <button class="numpad-btn" data-value="1">1</button> <button class="numpad-btn" data-value="2">2</button> <button class="numpad-btn" data-value="3">3</button>
+                <button class="numpad-btn" data-value="4">4</button> <button class="numpad-btn" data-value="5">5</button> <button class="numpad-btn" data-value="6">6</button>
+                <button class="numpad-btn" data-value="7">7</button> <button class="numpad-btn" data-value="8">8</button> <button class="numpad-btn" data-value="9">9</button>
+                <div class="numpad-btn placeholder"></div> <button class="numpad-btn zero" data-value="0">0</button> <button class="numpad-btn delete" data-value="del">⌫</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  <footer>
+    <small>Made with ❤️ - wish you all the best in the future</small>
+  </footer>
+
+  <div id="myLightbox" class="lightbox">
+    <span class="close-btn">&times;</span>
+    <img class="lightbox-content" id="lightboxImg">
+  </div>
+
+  <script>
+    const bg = document.querySelector('.bg-anim'); window.addEventListener('pointermove', (e)=>{ const x = (e.clientX / window.innerWidth) * 100; const y = (e.clientY / window.innerHeight) * 100; bg.style.setProperty('--x', x + '%'); bg.style.setProperty('--y', y + '%'); });
+    const sky = document.getElementById('sky'); const ctx = sky.getContext('2d'); function resize(){ sky.width = innerWidth; sky.height = innerHeight; } addEventListener('resize', resize); resize(); const P = Array.from({length: 30}, () => ({ x: Math.random()*sky.width, y: Math.random()*sky.height, r: Math.random()*1.4 + .4, s: Math.random()*0.5 + 0.1, a: Math.random()*Math.PI*2 })); function loop(){ ctx.clearRect(0,0,sky.width,sky.height); P.forEach(p => { p.y -= p.s; p.x += Math.sin(p.a)*0.2; p.a += 0.01; if(p.y < -10){ p.y = sky.height + 10; p.x = Math.random()*sky.width } ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fillStyle = "rgba(255,255,255,.6)"; ctx.fill(); }); requestAnimationFrame(loop); } loop();
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) } }) }, {threshold: .12}); document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+    document.querySelectorAll('.float-on-click').forEach(el=>{ el.addEventListener('click', ()=>{ el.classList.toggle('float-out'); }); });
+    (function spawnDots(){ const skyDiv = document.querySelector('.sky-dots'); if (!skyDiv) return; for(let i=0; i<12; i++){ const d = document.createElement('div'); d.className='dot'; const startX = Math.random()*100 + 'vw'; const endX = (Math.random()*100 - 50) + 'vw'; d.style.setProperty('--sx', startX); d.style.setProperty('--ex', endX); d.style.setProperty('--sc', (Math.random()*0.7 + 0.5).toFixed(2)); d.style.left = startX; d.style.animationDuration = (Math.random()*25 + 20) + 's'; d.style.animationDelay = (Math.random()*-25) + 's'; skyDiv.appendChild(d); } })();
+    const lightbox = document.getElementById('myLightbox'); const lightboxImg = document.getElementById('lightboxImg'); const closeBtn = document.getElementsByClassName('close-btn')[0]; document.querySelectorAll('.heart-item').forEach(photoDiv => { photoDiv.addEventListener('click', function() { const imgSrc = this.getAttribute('data-img-src'); lightbox.classList.add('show'); lightboxImg.src = imgSrc; document.body.style.overflow = 'hidden'; }); }); closeBtn.addEventListener('click', function() { lightbox.classList.remove('show'); document.body.style.overflow = ''; }); lightbox.addEventListener('click', function(event) { if (event.target === lightbox) { lightbox.classList.remove('show'); document.body.style.overflow = ''; } });
+    const spotifyContainer = document.getElementById('spotify-container'); if (spotifyContainer) { const passwordDisplay = spotifyContainer.querySelector('.password-display'); const passwordPrompt = spotifyContainer.querySelector('.password-prompt'); const numpadButtons = spotifyContainer.querySelectorAll('.numpad-btn'); const correctPassword = "2323"; let enteredPassword = ""; function updatePasswordDisplay() { passwordDisplay.textContent = "*".repeat(enteredPassword.length); passwordDisplay.classList.remove('error'); passwordPrompt.textContent = "Nhập mật mã để nhận quà 🎁"; } function checkPassword() { if (enteredPassword === correctPassword) { spotifyContainer.classList.add('unlocked'); } else { passwordDisplay.classList.add('error'); passwordPrompt.textContent = "Sai rồi, em thử lại nhen!"; spotifyContainer.querySelector('.password-overlay').animate([{ transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(0)' }], { duration: 300, iterations: 1 }); setTimeout(() => { enteredPassword = ""; updatePasswordDisplay(); }, 1000); } } numpadButtons.forEach(button => { button.addEventListener('click', () => { const value = button.getAttribute('data-value'); if (value === 'del') { enteredPassword = enteredPassword.slice(0, -1); } else if (enteredPassword.length < 4) { enteredPassword += value; } updatePasswordDisplay(); if (enteredPassword.length === 4) { checkPassword(); } }); }); updatePasswordDisplay(); }
+  </script>
+</body>
+</html>
